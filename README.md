@@ -10,6 +10,7 @@ $ sudo apt-get install php5 php5-fpm php5-sqlite
 2. IDE Configuration (example Netbeans)
 * Access menu *Tools* -> *Options* -> *PHP*
 * Click on *Search* or set manually via *Choose*
+
 ###Install PHPUnit:
 ```
 $ wget https://phar.phpunit.de/phpunit.phar
@@ -26,6 +27,7 @@ $ wget https://phar.phpunit.de/phpunit-skelgen.phar
 $ chmod +x phpunit-skelgen.phar
 $ sudo mv phpunit-skelgen.phar /usr/local/bin/phpunit-skelgen
 $ phpunit-skelgen --version
+phpunit-skelgen x.y.z by Sebastian Bergmann.
 ```
 *see* [PHPUnit_SkeletonGenerator Instructions](https://github.com/sebastianbergmann/phpunit-skeleton-generator)
 
