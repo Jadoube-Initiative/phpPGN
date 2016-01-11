@@ -99,6 +99,10 @@ class Game {
     /**
      * Parses a string containing a game and fills movetext and tags attributes.
      * The tag attribute is filled as an associative array (TagName => TagObject)
+     * 
+     * @assert(NULL) throws pgn\exceptions\InvalidGameFormatException
+     * @assert(123) throws pgn\exceptions\InvalidGameFormatException
+     * 
      * @param string $unparsedGame string containing one PGN Game
      * @throws InvalidGameFormatException throws an exception if the parameter
      *         is not a string or if it doesn't have the correct fields, i.e.
