@@ -1,5 +1,5 @@
 # phpPGN
-Set PHP written Library to deal with PGN (Portable Game Notation) files. It is currently designed to understand PGN files only for reading purposes, there is no intention yet to validate the files, it assumes the PGN file is correct (e.g., generated from other tools like [ChassPad](http://www.wmlsoftware.com/chesspad.html)). Validating PGN files can be a future work.
+A PHP written Library to deal with PGN (Portable Game Notation) files. It is currently designed to understand PGN files only for reading purposes, there is no intention yet to validate the files, it assumes the PGN file is correct (e.g., generated from other tools like [ChassPad](http://www.wmlsoftware.com/chesspad.html)). Validating PGN files can be a future work.
 
 ## Development Environment
 ### Install PHP (Example: command line Ubuntu installation)
