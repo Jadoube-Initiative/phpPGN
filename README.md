@@ -37,10 +37,10 @@ phpunit-skelgen x.y.z by Sebastian Bergmann.
  3. Setup PHPUnit bootstrap configuration
 3. *Right click on Project* -> *Properties* -> *PHPUnit*
  1. **Use Bootstrap** and **Use Bootstrap to create new unit tests**, 
- 2. In the same screen, choose bootstrap.php file
+ 2. In the same screen, choose `bootstrap.php` file
 
 ### Testing (Example: via command line)
-In order to check if all configurations succeeded you may want to run the unit tests by executing the following command in the project directory (e.g.: /home/user/projects/phpPGN):
+In order to check if all configurations succeeded you may want to run the unit tests by executing the following command in the project directory (e.g.: `/home/user/projects/phpPGN`):
 ```
 $ cd /home/user/projects/phpPGN
 $ phpunit test --bootstrap="bootstrap.php"
