@@ -12,7 +12,7 @@ use utils\Parser;
  * @see pgn_standard.txt
  * @author Geraldo
  */
-class EventCountry extends Tag {
+class Source extends Tag {
 
     public function getName() {
         $parsed = Parser::parseClassName(get_class());
