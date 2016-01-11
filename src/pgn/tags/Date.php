@@ -266,7 +266,7 @@ class Date extends Tag {
     }
 
     private function checkFormat($date) {
-        if (!is_string($date) || !preg_match_all(self::validPattern(), $date)) {
+        if (!is_string($date) || !preg_match_all("/^" . self::validPattern() . "$/", $date)) {
             $this->errorMsg = self::$ERROR_MESSAGE;
             return false;
         }
@@ -278,6 +278,6 @@ class Date extends Tag {
      * @return string Valid Regular Expression Pattern for PGN Dates
      */
     static public function validPattern() {
-        return "/^(\d|\?){4}\.(\d|\?){2}\.(\d|\?){2}$/";
+        return "(\d|\?){4}\.(\d|\?){2}\.(\d|\?){2}";
     }
 }

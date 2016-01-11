@@ -121,7 +121,11 @@ class Game {
             $tag = Tag::parse($unparsedTag . "]", $this->parseErrors);
             $this->addTag($tag);
         }
-
+        
+        if (!$this->checkSetUpAndFEN()) {
+            throw new InvalidGameFormatException("[" . __CLASS__ . "] invalid game format (SetUp=1 without FEN): " . $unparsedGame);
+        }
+        
         if ($this->checkMoveText($uncheckedMoveText)) {
             $this->moveText = $uncheckedMoveText;
         } else {
@@ -158,6 +162,19 @@ class Game {
      */
     protected function checkMoveText($uncheckedMoveText) {
         return true;
+    }
+
+    protected function checkSetUpAndFEN() {
+        $setUp = $this->getTag("SetUp");
+        $fen = $this->getTag("FEN");
+        
+        // the pair SetUp and FEN must exists together
+        if($setUp === NULL) {
+            return $fen === NULL;
+        }
+        else {
+            return $fen !== NULL;
+        }
     }
 
 }

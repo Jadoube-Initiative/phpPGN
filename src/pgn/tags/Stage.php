@@ -9,14 +9,14 @@ namespace pgn\tags;
 use utils\Parser;
 
 /**
- * Description of EventDate:
- * This uses a date value, similar to the Date tag field, that gives the starting
- * date of the Event.
- * 
+ * Description of Stage:
+ * This uses a string; this is used for the stage of a multistage event (e.g.,
+ * "Preliminary" or "Semifinal").
+ *
  * @see pgn_standard.txt
  * @author Geraldo
  */
-class EventDate extends Date {
+class Stage extends Tag {
 
     public function getName() {
         $parsed = Parser::parseClassName(get_class());

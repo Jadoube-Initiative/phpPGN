@@ -80,6 +80,16 @@ class TagTest extends \PHPUnit_Framework_TestCase {
     /**
      * @covers pgn\tags\Tag::validate
      */
+    public function testValidate_Zero() {
+        $this->data = '0';
+        $result = $this->object->validate($this->data);
+        
+        $this->assertTrue($result);
+    }
+
+    /**
+     * @covers pgn\tags\Tag::validate
+     */
     public function testValidate_QuestionMark_OK() {
         $this->data = '?';
         $result = $this->object->validate($this->data);

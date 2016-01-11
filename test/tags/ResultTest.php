@@ -18,6 +18,7 @@ class ResultTest extends \PHPUnit_Framework_TestCase {
      */
     protected function setUp() {
         $this->object = new Result;
+        echo __CLASS__ . '::' . $this->getName() . "\n";
     }
 
     /**

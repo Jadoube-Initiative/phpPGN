@@ -63,6 +63,10 @@ abstract class Tag {
      */
     public function validate($data) {
 
+        if ($data === "0") {
+            return true;
+        }
+        
         if ($data === \NULL) {
             return false;
         }

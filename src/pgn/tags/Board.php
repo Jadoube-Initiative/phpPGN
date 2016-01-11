@@ -9,33 +9,21 @@ namespace pgn\tags;
 use utils\Parser;
 
 /**
- * Description of WhiteElo:
- * 9.1.2: Tags: WhiteElo, BlackElo
- * These tags use integer values; these are used for FIDE Elo ratings.  A value of
- * "-" is used for an unrated player.
+ * Description of Board:
+ * This uses an integer; this identifies the board number in a team event and also
+ * in a simultaneous exhibition.
  * @see pgn_standard.txt
  * @author Geraldo
  */
-class WhiteElo extends Tag {
+class Board extends Tag {
 
-    /**
-     * @assert() === "WhiteElo"
-     * @return string
-     */
     public function getName() {
         $parsed = Parser::parseClassName(get_class());
         return $parsed['className'];
     }
-    /**
-     * @assert () === "-"
-     * @return string
-     */
-    public function getDefaultValue() {
-        return "-";
-    }
 
     /**
-     * @assert("1900") === true
+     * @assert("1") === true
      * @assert("19") === true
      * @assert(1) === true
      * @assert("3.1") === false

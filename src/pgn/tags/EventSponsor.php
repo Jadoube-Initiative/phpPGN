@@ -9,15 +9,19 @@ namespace pgn\tags;
 use utils\Parser;
 
 /**
- * Description of EventDate:
- * This uses a date value, similar to the Date tag field, that gives the starting
- * date of the Event.
+ * Description of EventSponsor:
+ * This uses a string value giving the name of the sponsor of the event.
  * 
  * @see pgn_standard.txt
  * @author Geraldo
  */
-class EventDate extends Date {
+class EventSponsor extends White {
 
+    /**
+     * 
+     * @assert () === "EventSponsor"
+     * @return string EventSponsor
+     */
     public function getName() {
         $parsed = Parser::parseClassName(get_class());
         return $parsed['className'];

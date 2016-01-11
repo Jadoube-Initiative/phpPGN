@@ -9,14 +9,14 @@ namespace pgn\tags;
 use utils\Parser;
 
 /**
- * Description of EventDate:
- * This uses a date value, similar to the Date tag field, that gives the starting
- * date of the Event.
- * 
+ * Description of Section:
+ * This uses a string; this is used for the playing section of a tournament (e.g.,
+ * "Open" or "Reserve").
+ *
  * @see pgn_standard.txt
  * @author Geraldo
  */
-class EventDate extends Date {
+class Section extends Tag {
 
     public function getName() {
         $parsed = Parser::parseClassName(get_class());

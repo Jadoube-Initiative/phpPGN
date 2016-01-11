@@ -65,7 +65,7 @@ class Round extends Tag {
             return true;
         }
         
-        return preg_match_all(self::validPattern(), $data) === 1;
+        return preg_match_all("/^" . self::validPattern() . "$/", $data) === 1;
     }
     
     /**
@@ -73,6 +73,6 @@ class Round extends Tag {
      * @return string Valid Regular Expression Pattern for PGN Rounds
      */
     static public function validPattern() {
-        return "/^[\-]{1}|\d(\.\d)*$/";
+        return "[\-]{1}|\d(\.\d)*";
     }
 }
