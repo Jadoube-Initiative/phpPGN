@@ -43,7 +43,7 @@ phpunit-skelgen x.y.z by Sebastian Bergmann.
 In order to check if all configurations succeeded you may want to run the unit tests by executing the following command in the project directory (e.g.: /home/user/projects/phpPGN):
 ```
 $ cd /home/user/projects/phpPGN
-$ phpunit test --bootstrap="test/bootstrap.php"
+$ phpunit test --bootstrap="bootstrap.php"
 
 ...big output ending with something like:
 ....                      X / X (100%)
