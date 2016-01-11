@@ -13,9 +13,9 @@
  * @see http://stackoverflow.com/questions/20769745/phpunit-failed-opening-required-phpunit-extensions-story-testcase-php
  */
 spl_autoload_register(
-    function ($class) {
-        $lib = dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'src';
-        $fileName = $lib . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
+        function ($class) {
+            $lib = dirname(__FILE__);
+            $fileName = $lib . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
             include_once $fileName;
-    }
+        }
 );
