@@ -105,7 +105,7 @@ class PGN {
      *         the move text and the seven roster tags
      */
     public function loadFromFile($path) {
-        if(!file_exists($path)) {
+        if(!file_exists(realpath($path))) {
             throw new InvalidGamePathException('['.__CLASS__.": File [$path] doesn't exist");
         }
         
