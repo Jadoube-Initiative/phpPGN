@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="phpPGN : Set of PHP code to deal with PGN (Portable Game Notation) files...">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>phpPGN</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Jadoube-Initiative/phpPGN">View on GitHub</a>
+
+          <h1 id="project_title">phpPGN</h1>
+          <h2 id="project_tagline">Set of PHP code to deal with PGN (Portable Game Notation) files...</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Jadoube-Initiative/phpPGN/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Jadoube-Initiative/phpPGN/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>A PHP written Library to deal with PGN (Portable Game Notation) files. It is currently designed to understand PGN files only for reading purposes, there is no intention yet to validate the files, it assumes the PGN file is correct (e.g., generated from other tools like <a href="http://www.wmlsoftware.com/chesspad.html">ChassPad</a>).
+phpPGN is part of J'adoube-Initiative. By following J'adoube Initiative's philosophy, this project aims to aggregate several functionalities and documentations related to PGN manipulation in one place. In addition to the following information, check out PGN Standard and Related Projects in our <a href="https://github.com/Jadoube-Initiative/phpPGN/wiki">Wiki Page</a>.</p>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p>Browse phpPGN <a href="https://github.com/Jadoube-Initiative/phpPGN">Standard Documentation</a>.</p>
+
+<h3>
+<a id="importing-phppgn" class="anchor" href="#importing-phppgn" aria-hidden="true"><span class="octicon octicon-link"></span></a>Importing phpPGN</h3>
+
+<p>In order to use phpPGN in your project, proceed with one of the following steps:</p>
+
+<ul>
+<li>Place the code into your project by git-pulling it; or</li>
+<li>Download the PHAR (not possible yet) file and include it into your project (see the available <a href="https://github.com/Jadoube-Initiative/phpPGN/tree/master/samples">samples</a>).</li>
+</ul>
+
+<h3>
+<a id="building-phppgnphar" class="anchor" href="#building-phppgnphar" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building phpPGN.phar</h3>
+
+<p>Because the project is still in an alpha stage, a PHAR file is not available. However, it's still possible to create it. In order to do that, the ini <code>phar.readonly</code> directive must be set to <strong>Off</strong>; so, use <code>php --ini</code> to check
+where is your cli's ini file (let's say <code>/etc/php5/cli/php.ini</code> for example), and edit it:</p>
+
+<pre><code>$ php --ini
+$ sudo nano /etc/php5/cli/php.ini
+</code></pre>
+
+<p>Finally, go to phpPGN's build (say <code>/home/user/projects/phpPGN/build</code>) directory and run <code>createPhar.php</code>:</p>
+
+<pre><code>$ cd /home/user/projects/phpPGN/build
+$ ./createPhar.php
+</code></pre>
+
+<h3>
+<a id="testing-example-via-command-line" class="anchor" href="#testing-example-via-command-line" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing (Example: via command line)</h3>
+
+<p>In order to check if all configurations succeeded you may want to run the unit tests by executing the following command in the project directory (e.g.: <code>/home/user/projects/phpPGN</code>):</p>
+
+<pre><code>$ cd /home/user/projects/phpPGN
+$ phpunit test --bootstrap="bootstrap.php"
+
+...big output ending with something like:
+....                      X / X (100%)
+
+Time: Y ms, Memory: W Mb
+
+OK (X tests, Z assertions)
+</code></pre>
+
+<h3>
+<a id="getting-help" class="anchor" href="#getting-help" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting help</h3>
+
+<p>phpPGN is part of J'adoube Initiative. Please contact us via: <a href="mailto:jadoube@googlegroups.com">jadoube@googlegroups.com</a></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">phpPGN maintained by <a href="https://github.com/Jadoube-Initiative">Jadoube-Initiative</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
