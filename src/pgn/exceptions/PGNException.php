@@ -6,9 +6,7 @@
  */
 namespace pgn\exceptions;
 
-use Exception;
-
-class PGNException extends Exception{
+class PGNException extends \Exception{
     public function __construct($message) {
         parent::__construct($message, 0, null);
     }
