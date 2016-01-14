@@ -2,3 +2,4 @@
 *.phar
 *.pgn
 gh-pages/
+build/build.ini

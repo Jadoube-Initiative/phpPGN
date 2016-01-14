@@ -17,6 +17,6 @@ if (count($argv) < 2) {
 }
 ?>
 <html><head>
-  <meta http-equiv="Refresh" content="0; url=http://jadoube-initiative.github.io/phpPGN/api/<?=$argv[1]?>/">
+  <meta http-equiv="Refresh" content="0; url=https://jadoube-initiative.github.io/phpPGN/api/<?=$argv[1]?>/">
 </head><body>
 </body></html>
