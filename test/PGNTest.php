@@ -117,6 +117,32 @@ class PGNTest extends \PHPUnit_Framework_TestCase {
      * 
      * @covers pgn\PGN::loadFromFile
      */
+    public function testLoadFromFile2FEN() {
+        $fileName = 'FEN.pgn';
+        $this->assertTrue(file_exists($this->resourcePath . $fileName));
+        $this->object->loadFromFile($this->resourcePath . $fileName);
+        $this->assertSame(
+                2, $this->object->countGames()
+        );
+    }
+
+    /**
+     * 
+     * @covers pgn\PGN::loadFromFile
+     */
+    public function testLoadFromFileFEN1() {
+        $fileName = 'FEN1.pgn';
+        $this->assertTrue(file_exists($this->resourcePath . $fileName));
+        $this->object->loadFromFile($this->resourcePath . $fileName);
+        $this->assertSame(
+                1, $this->object->countGames()
+        );
+    }
+
+    /**
+     * 
+     * @covers pgn\PGN::loadFromFile
+     */
     public function testLoadFromFile3() {
         $fileName = '3-games-sample.pgn';
         $this->assertTrue(file_exists($this->resourcePath . $fileName));

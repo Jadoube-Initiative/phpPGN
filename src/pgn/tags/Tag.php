@@ -1,9 +1,11 @@
 <?php
-/* 
+
+/*
  * Copyright (c) 2016 Geraldo B. Landre
  * 
  * See the file LICENSE for copying permission.
  */
+
 namespace pgn\tags;
 
 use pgn\exceptions\InvalidDataException;
@@ -32,7 +34,7 @@ abstract class Tag {
     public function __toString() {
         return '[' . $this->getName() . ' "' . $this->get() . '"]';
     }
-    
+
     /**
      * Sets the tag with the data if it's a valid data
      * @param string $data
@@ -66,7 +68,7 @@ abstract class Tag {
         if ($data === "0") {
             return true;
         }
-        
+
         if ($data === \NULL) {
             return false;
         }
@@ -123,7 +125,7 @@ abstract class Tag {
 
         $tagName = self::parseTagName($unparsedTag);
         $tagValue = self::parseTagValue($unparsedTag);
-        
+
         return self::createTag($tagName, $tagValue);
     }
 
@@ -156,6 +158,14 @@ abstract class Tag {
 
     /**
      * Get the regex pattern of a valid tag string
+     * @assert('[Event "Black to play"]') === true
+     * @assert('[Site "?"]') === true
+     * @assert('[Date "????.??.??"]') === true
+     * @assert('[Round "?"]') === true
+     * @assert('[White "?"]') === true
+     * @assert('[Black "?"]') === true
+     * @assert('[Result "*"]') === true
+     * @assert('[SetUp "1"]') === true
      * @return string regex pattern of a valid tag string
      */
     static public function validPattern() {
@@ -175,11 +185,9 @@ abstract class Tag {
             $tag = new $className ();
             $tag->set($tagValue);
             return $tag;
-        } 
-        catch(InvalidDataException $ex) {
+        } catch (InvalidDataException $ex) {
             $errors = "[" . __CLASS__ . "] bad value [$tagValue] for tag $tagName [" . $ex->getMessage() . "]";
-        } 
-        catch (\Exception $ex) {
+        } catch (\Exception $ex) {
             $errors = "[" . __CLASS__ . "] urecognized Tag: $tagName [" . $ex->getMessage() . "]";
             return self::createUknownTag($tagName, $tagValue, $errors);
         }

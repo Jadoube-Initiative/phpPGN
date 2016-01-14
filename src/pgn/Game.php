@@ -104,7 +104,7 @@ class Game {
      * @assert(123) throws pgn\exceptions\InvalidGameFormatException
      * 
      * @param string $unparsedGame string containing one PGN Game
-     * @throws InvalidGameFormatException throws an exception if the parameter
+     * @throws pgn\exceptions\InvalidGameFormatException throws an exception if the parameter
      *         is not a string or if it doesn't have the correct fields, i.e.
      *         the move text and the seven roster tags
      */
@@ -115,19 +115,19 @@ class Game {
         
         $parsing = explode("]", $unparsedGame);
         
-        if(count($parsing) < 8) {
+        if(count($parsing) < 8) { // TODO: create a checkSTR method
             throw new InvalidGameFormatException("[" . __CLASS__ . "] invalid game format (it doesn't have correct fields): " . $unparsedGame);
         }
         
         $uncheckedMoveText = array_pop($parsing);
 
         foreach ($parsing as $unparsedTag) {
-            $tag = Tag::parse($unparsedTag . "]", $this->parseErrors);
+            $tag = Tag::parse(trim($unparsedTag) . "]", $this->parseErrors);
             $this->addTag($tag);
         }
         
         if (!$this->checkSetUpAndFEN()) {
-            throw new InvalidGameFormatException("[" . __CLASS__ . "] invalid game format (SetUp=1 without FEN): " . $unparsedGame);
+            throw new InvalidGameFormatException("[" . __CLASS__ . "] invalid game format (missing SetUp or FEN): " . $unparsedGame);
         }
         
         if ($this->checkMoveText($uncheckedMoveText)) {
@@ -173,7 +173,7 @@ class Game {
         $fen = $this->getTag("FEN");
         
         // the pair SetUp and FEN must exists together
-        if($setUp === NULL) {
+        if($setUp === NULL || $setUp->get() === '0') {
             return $fen === NULL;
         }
         else {

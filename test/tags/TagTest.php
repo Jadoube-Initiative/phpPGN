@@ -3,9 +3,11 @@
 namespace pgn\tags;
 
 class StubTag extends Tag {
+
     public function getName() {
         return get_class();
     }
+
 }
 
 /**
@@ -43,7 +45,7 @@ class TagTest extends \PHPUnit_Framework_TestCase {
     public function testValidate_Null() {
         $this->data = null;
         $result = $this->object->validate($this->data);
-        
+
         $this->assertFalse($result);
     }
 
@@ -53,7 +55,7 @@ class TagTest extends \PHPUnit_Framework_TestCase {
     public function testValidate_Array() {
         $this->data = array('Hello', 'World');
         $result = $this->object->validate($this->data);
-        
+
         $this->assertFalse($result);
     }
 
@@ -63,7 +65,7 @@ class TagTest extends \PHPUnit_Framework_TestCase {
     public function testValidate_Array2() {
         $this->data = array();
         $result = $this->object->validate($this->data);
-        
+
         $this->assertFalse($result);
     }
 
@@ -73,7 +75,7 @@ class TagTest extends \PHPUnit_Framework_TestCase {
     public function testValidate_Empty() {
         $this->data = '';
         $result = $this->object->validate($this->data);
-        
+
         $this->assertFalse($result);
     }
 
@@ -83,7 +85,7 @@ class TagTest extends \PHPUnit_Framework_TestCase {
     public function testValidate_Zero() {
         $this->data = '0';
         $result = $this->object->validate($this->data);
-        
+
         $this->assertTrue($result);
     }
 
@@ -93,7 +95,7 @@ class TagTest extends \PHPUnit_Framework_TestCase {
     public function testValidate_QuestionMark_OK() {
         $this->data = '?';
         $result = $this->object->validate($this->data);
-        
+
         $this->assertTrue($result);
     }
 
@@ -103,7 +105,7 @@ class TagTest extends \PHPUnit_Framework_TestCase {
     public function testValidate_DefaultDate_OK() {
         $this->data = '????.??.??';
         $result = $this->object->validate($this->data);
-        
+
         $this->assertTrue($result);
     }
 
@@ -116,7 +118,7 @@ class TagTest extends \PHPUnit_Framework_TestCase {
         $this->object->set($this->data);
         $this->assertEquals($this->data, $this->object->get());
     }
-    
+
     /**
      * @expectedException pgn\exceptions\InvalidDataException
      * @cover pgn\tags\Tag::set
@@ -133,7 +135,7 @@ class TagTest extends \PHPUnit_Framework_TestCase {
     public function testGetDefaultValue() {
         $this->assertEquals('?', $this->object->getDefaultValue());
     }
-    
+
     /**
      * Based (manual) in @assert('[TestName "Test Value"]') === "TestName"
      * 
@@ -141,7 +143,7 @@ class TagTest extends \PHPUnit_Framework_TestCase {
     public function testParseTagName1() {
         $this->assertSame("TestName", Tag::parseTagName('[TestName "Test Value"]'));
     }
-    
+
     /**
      * Based (manual) in @assert('[TestName "Test Value"') throws  \pgn\exceptions\InvalidGameFormatException
      * @expectedException \pgn\exceptions\InvalidGameFormatException
@@ -151,7 +153,7 @@ class TagTest extends \PHPUnit_Framework_TestCase {
     public function testParseTagName2() {
         $this->assertSame("TestName", Tag::parseTagName('[TestName "Test Value"'));
     }
-    
+
     /**
      * Based (manual) in @assert('asdf') throws \pgn\exceptions\InvalidGameFormatException
      * @expectedException \pgn\exceptions\InvalidGameFormatException
@@ -160,14 +162,14 @@ class TagTest extends \PHPUnit_Framework_TestCase {
     public function testParseTagName3() {
         $tagName = Tag::parseTagName('asdf');
     }
-    
+
     /**
      * Based (manual) in @assert('[TestName "Test Value"]') === "Test Value"
      */
     public function testParseTagValue1() {
         $this->assertSame("Test Value", Tag::parseTagValue('[TestName "Test Value"]'));
     }
-    
+
     /**
      * Based (manual) in @assert('[TestName "Test Value"') throws  \pgn\exceptions\InvalidGameFormatException
      * @expectedException \pgn\exceptions\InvalidGameFormatException
@@ -177,7 +179,7 @@ class TagTest extends \PHPUnit_Framework_TestCase {
     public function testParseTagValue2() {
         $this->assertSame("Test Value", Tag::parseTagValue('[TestName "Test Value"'));
     }
-    
+
     /**
      * Based (manual) in @assert('asdf') throws \pgn\exceptions\InvalidGameFormatException
      * @expectedException \pgn\exceptions\InvalidGameFormatException
@@ -186,46 +188,46 @@ class TagTest extends \PHPUnit_Framework_TestCase {
     public function testParseTagValue3() {
         $tagName = Tag::parseTagValue('asdf');
     }
-    
+
     /**
      * 
      */
     public function testParseDate() {
         $dateTag = new Date;
         $dateTag->set(\DateTime::createFromFormat("d/m/Y", "02/11/1988"));
-        
+
         $unparsedTag = '[Date "1988.11.02"]';
         $errors = null;
-        
+
         $parsed = Tag::parse($unparsedTag, $errors);
-        
+
         echo "errors: ";
         var_dump($errors);
-        
+
         $this->assertInstanceof('pgn\tags\Date', $parsed);
         $this->assertSame($dateTag->get(), $parsed->get());
         $this->assertNotNull($errors);
         $this->assertEquals(0, count($errors));
     }
-    
+
     public function testParseEvent() {
         $eventTag = new Event;
         $eventTag->set("Some Ordinary Event");
-        
+
         $unparsedTag = '[Event "Some Ordinary Event"]';
         $errors = null;
-        
+
         $parsed = Tag::parse($unparsedTag, $errors);
-        
+
         echo "errors: ";
         var_dump($errors);
-        
+
         $this->assertInstanceof('pgn\tags\Event', $parsed);
         $this->assertSame($eventTag->get(), $parsed->get());
         $this->assertNotNull($errors);
         $this->assertEquals(0, count($errors));
     }
-    
+
     /**
      * 
      */
@@ -233,19 +235,83 @@ class TagTest extends \PHPUnit_Framework_TestCase {
         $uknownTag = new UknownTag();
         $uknownTag->setName("MyUknown");
         $uknownTag->set("Some Ordinary Information");
-        
+
         $unparsedTag = '[MyUknown "Some Ordinary Information"]';
         $errors = null;
-        
+
         $parsed = Tag::parse($unparsedTag, $errors);
-        
+
         echo "errors: ";
         var_dump($errors);
-        
+
         $this->assertInstanceof('pgn\tags\UknownTag', $parsed);
         $this->assertSame($uknownTag->get(), $parsed->get());
         $this->assertSame($uknownTag->getName(), $parsed->getName());
         $this->assertNotNull($errors);
         $this->assertEquals(0, count($errors));
+    }
+
+    /**
+     * @assert('[Event "Black to play"]') === true
+     * @covers Tag::validPattern
+     */
+    public function testValidPattern1() {
+        $this->assertTrue((boolean) preg_match("/^" . Tag::validPattern() . "$/", '[Event "Black to play"]'));
+    }
+
+    /**
+     * @assert('[Date "????.??.??"]') === true
+     * @covers Tag::validPattern
+     */
+    public function testValidPattern2() {
+        $this->assertTrue((boolean) preg_match("/^" . Tag::validPattern() . "$/", '[Site "?"]'));
+    }
+    
+    /**
+     * @assert('[Round "?"]') === true
+     * @covers Tag::validPattern
+     */
+    public function testValidPattern3() {
+        $this->assertTrue((boolean) preg_match("/^" . Tag::validPattern() . "$/", '[Round "?"]'));
+    }
+    
+    /**
+     * @assert('[White "?"]') === true
+     * @covers Tag::validPattern
+     */
+    public function testValidPattern4() {
+        $this->assertTrue((boolean) preg_match("/^" . Tag::validPattern() . "$/", '[White "?"]'));
+    }
+    
+    /**
+     * @assert('[Black "?"]') === true
+     * @covers Tag::validPattern
+     */
+    public function testValidPattern5() {
+        $this->assertTrue((boolean) preg_match("/^" . Tag::validPattern() . "$/", '[Black "?"]'));
+    }
+    
+    /**
+     * @assert('[Result "*"]') === true
+     * @covers Tag::validPattern
+     */
+    public function testValidPattern6() {
+        $this->assertTrue((boolean) preg_match("/^" . Tag::validPattern() . "$/", '[Result "*"]'));
+    }
+    
+    /**
+     * @assert('[SetUp "1"]') === true
+     * @covers Tag::validPattern
+     */
+    public function testValidPattern7() {
+        $this->assertTrue((boolean) preg_match("/^" . Tag::validPattern() . "$/", '[SetUp "0"]'));
+    }
+
+    /**
+     * @assert('[Site "?"]') === true
+     * @covers Tag::validPattern
+     */
+    public function testValidPattern8() {
+        $this->assertTrue((boolean) preg_match("/^" . Tag::validPattern() . "$/", '[FEN "8/8/8/8/Pp2k3/1P6/4K3/8 w - - 0 1"]'));
     }
 }
